@@ -1,3 +1,4 @@
+import os
 from decimal import Decimal
 
 from django import template
@@ -6,9 +7,11 @@ from django.test import TestCase
 from currencies.models import Currency
 from currencies.utils import calculate
 
+FIXTURES = [os.path.join(os.path.dirname(__file__), 'fixtures', 'test_data')]
+
 
 class UtilsTest(TestCase):
-    fixtures = ['test_data']
+    fixtures = FIXTURES
     use_transaction = False
 
     def test_calculate_price_success(self):
@@ -25,7 +28,7 @@ class UtilsTest(TestCase):
 
 
 class TemplateTagTest(TestCase):
-    fixtures = ['test_data']
+    fixtures = FIXTURES
     use_transaction = False
 
     html = """{% load currency %}"""

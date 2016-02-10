@@ -23,7 +23,7 @@ if not settings.configured:
         TEMPLATE_LOADERS = (
             'django.template.loaders.app_directories.Loader',
         ),
-        TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+        TEMPLATE_CONTEXT_PROCESSORS = tuple(global_settings.TEMPLATE_CONTEXT_PROCESSORS) + (
             'django.core.context_processors.request',
         ),
         INSTALLED_APPS = (
@@ -33,7 +33,7 @@ if not settings.configured:
             'django.contrib.sites',
 
             'currencies',
-            'currencies.tests',
+            #'currencies.tests',
         ),
         MIDDLEWARE_CLASSES = (
             'django.middleware.common.CommonMiddleware',
@@ -43,7 +43,7 @@ if not settings.configured:
         ),
         TEST_RUNNER = 'django.test.simple.DjangoTestSuiteRunner' if django.VERSION < (1,6) else 'django.test.runner.DiscoverRunner',
         SITE_ID = 1,
-        ROOT_URLCONF = 'currencies.tests.test_urls',
+        ROOT_URLCONF = 'currencies.tests.urls',
     )
 
 def runtests():
